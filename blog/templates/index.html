@@ -1,0 +1,116 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <!-- Page Header -->
+    <header class="masthead" style="background-image: url({% static 'img/home.jpg' %})">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-md-10 mx-auto">
+                    <div class="site-heading">
+                        <h1>KANGchelin</h1>
+                        <span class="subheading">Comma's cookinglog</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto">
+                <div class="post-preview">
+                    <a href="{% url 'post' %}">
+                        <h2 class="post-title">
+                            요리
+                        </h2>
+                        <h3 class="post-subtitle">
+                            Cook
+                        </h3>
+                    </a>
+                    <p class="post-meta">Go to Board</p>
+                </div>
+                <hr>
+                <div class="post-preview">
+                    <a href="{% url 'post' %}">
+                        <h2 class="post-title">
+                            Commuity
+                        </h2>
+                        <h3 class="post-subtitle">
+                            for communication
+                        </h3>
+                    </a>
+                    <p class="post-meta">Go to Board</p>
+                </div>
+                <hr>
+
+                <!-- Pager -->
+                <div class="clearfix">
+                    <a class="btn btn-primary float-right" href="{% url 'post' %}">Older Posts &rarr;</a>
+                </div>
+            </div>
+            <div class="col-lg-3 col-lg-offset-0 col-md-3 col-md-offset-0 col-sm-12 col-xs-12 sidebar-container">
+                <!-- Featured Tags -->
+
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">HASH TAG</a></h5>
+                    <div class="tags">
+                        <a href="{% url 'post' %}"  rel="11">찌개</a>
+                        <a href="{% url 'post' %}"  rel="7">국/탕</a>
+                        <a href="{% url 'post' %}"  rel="1">볶음</a>
+                        <a href="{% url 'post' %}"  rel="2">면</a>
+                    </div>
+                </section>
+
+                <!-- Short About -->
+                <section class="visible-md visible-lg">
+                    <hr><h5><a href="/about/">ABOUT ME</a></h5>
+                    <div class="short-about">
+                        <img src='{% static "img/comma.png" %}'>
+                        <p>Comma</p>
+                        <!-- SNS Link -->
+                        <ul class="list-inline">
+                            <li class="list-inline-item">
+                                <a href="https://www.facebook.com/kangcomma">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
+                                </span>
+                                </a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a href=https://www.instagram.com/kang__comma>
+                                <span class="fa-stack fa-lg">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fab fa-instagram fa-stack-1x fa-inverse"></i>
+                                </span>
+                                </a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a href=https://github.com/sinpyo>
+                                <span class="fa-stack fa-lg">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                                </span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </section>
+
+                <!-- Friends Blog -->
+
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+                    <li><a href="http://wink.kookmin.ac.kr" target="_blank" rel="external nofollow noopener noreferrer">WINK</a></li>
+
+                </ul>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

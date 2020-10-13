@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <!-- Page Header -->
+    <header class="masthead" style="background-image: url({% static 'img/post.jpg' %})">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-md-10 mx-auto">
+                    <div class="post-heading">
+                        <h1>Cooking log</h1>
+                        <h2 class="subheading">Edit Post</h2>
+                        <span class="meta">Posted by
+              <a href="#">Comma</a>
+              </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Post Create -->
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto">
+
+                <form method = "POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ form.media }}
+                    {{ form.as_p }}
+
+                    <button type="submit" class="btn btn-secondary" onclick="location.href={% url 'post_detail' pk=post.pk %}">수정</button>
+                    <button type="submit" class="btn btn-danger" onclick="location.href={% url 'post' %}">취소</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

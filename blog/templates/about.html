@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+  <!-- Page Header -->
+  <header class="masthead" style="background-image: url({% static 'img/about.jpg' %})">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="page-heading">
+            <h1>About Me</h1>
+            <span class="subheading">My name is Kang Sin-Pyo</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <p>소속 : 국민대학교 소프트웨어융합대학 웹동아리 WINK</p>
+        <p>Tel : 010-6237-6061</p>
+        <p>Instagram : @kang_comma</p>
+        <p>#연애하고싶닭 #선팔맞팔 #좋반 #슬랑짱 #윙크짱</p>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}

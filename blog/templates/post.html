@@ -1,0 +1,203 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <!-- Page Header -->
+    <header class="masthead" style="background-image: url({% static 'img/post.jpg' %})">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-md-10 mx-auto">
+                    <div class="post-heading">
+                        <h1>Cooking log</h1>
+                        <h2 class="subheading">Board</h2>
+                        <span class="meta">Posted by
+              <a href="#">Comma</a>
+              </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="container">
+        <div class="row justify-content-end">
+            <div class="col-lg-8 col-md-10 mx-auto">
+
+                <button type="button" class="btn btn-secondary" onclick="location.href={% url 'post_create' %}">글쓰기</button>
+                <hr>
+
+                {% for post in posts %}
+                    {% if post.post_notice == True %}
+                        <div class="post-preview">
+                            <a href="{% url 'post_detail' pk=post.pk %}">
+                                <h5>[공지]</h5>
+                                <h2 class="post-title">
+                                    {{ post.post_name }}
+                                </h2>
+                                <h3 class="post-subtitle">
+                                    {{ post.post_content|safe|truncatewords:1 }}
+                                </h3>
+                            </a>
+                            <p class="post-meta">Posted by
+                                <a href="{% url 'about' %}">Comma</a>
+                                {{ post.post_modifydate }}</p>
+                        </div>
+                        <hr>
+                    {% else %}
+                    {% endif %}
+                {% endfor %}
+                {% for post in posts %}
+                    {% if post.post_notice != True %}
+                        <div class="post-preview">
+                            <a href="{% url 'post_detail' pk=post.pk %}">
+                                <h2 class="post-title">
+                                    {{ post.post_name }}
+                                </h2>
+                                <h3 class="post-subtitle">
+                                    {{ post.post_content|safe|truncatewords:1 }}
+                                </h3>
+                            </a>
+                            <p class="post-meta">Posted by
+                                <a href="{% url 'about' %}">Comma</a>
+                                {{ post.post_modifydate }}</p>
+                        </div>
+                        <hr>
+                    {% else %}
+                    {% endif %}
+                {% endfor %}
+
+
+
+                <ul class="pagination">
+                    {% if pages.has_previous %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ pages.previous_page_number }}" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                                <span class="sr-only">Previous</span>
+                            </a>
+                        </li>
+                    {% else %}
+                        <li class="page-item {% if not pages.has_previous %} disabled {% endif %}">
+                            <a class="page-link" href="#" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                                <span class="sr-only">Previous</span>
+                            </a>
+                        </li>
+                    {% endif %}
+                    {% for i in p_range %}
+                        <li class="page-item"><a class="page-link {% if pages.number == i %} active {% endif %}" href="?page={{ i }}">{{ i }}</a></li>
+                    {% endfor %}
+                    {% if pages.has_next %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ pages.next_page_number }}" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                                <span class="sr-only">Next</span>
+                            </a>
+                        </li>
+                    {% else %}
+                        <li class="page-item {% if not pages.has_next %} disabled {% endif %}">
+                            <a class="page-link" href="#" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                                <span class="sr-only">Next</span>
+                            </a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </div>
+            <div class="col-lg-3 col-lg-offset-0 col-md-3 col-md-offset-0 col-sm-12 col-xs-12 sidebar-container">
+                <!-- Featured Tags -->
+
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">HASH TAG</a></h5>
+                    <div class="tags">
+                        <a href="{% url 'post' %}"  rel="11">찌개</a>
+                        <a href="{% url 'post' %}"  rel="7">국/탕</a>
+                        <a href="{% url 'post' %}"  rel="1">볶음</a>
+                        <a href="{% url 'post' %}"  rel="2">면</a>
+
+                    </div>
+                </section>
+
+                <!-- Short About -->
+                <section class="visible-md visible-lg">
+                    <hr><h5><a href="/about/">ABOUT ME</a></h5>
+                    <div class="short-about">
+                        <img src='{% static "img/comma.png" %}'>
+                        <p>Comma</p>
+                        <!-- SNS Link -->
+                        <ul class="list-inline">
+                            <li class="list-inline-item">
+                                <a href="https://www.facebook.com/kangcomma">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
+                                </span>
+                                </a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a href=https://www.instagram.com/kang__comma>
+                                <span class="fa-stack fa-lg">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fab fa-instagram fa-stack-1x fa-inverse"></i>
+                                </span>
+                                </a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a href=https://github.com/sinpyo>
+                                <span class="fa-stack fa-lg">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                                </span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </section>
+
+                <!-- Friends Blog -->
+
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+                    <li><a href="http://wink.kookmin.ac.kr" target="_blank" rel="external nofollow noopener noreferrer">WINK</a></li>
+
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Post Content
+  <article>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <button type="button" class="btn btn-secondary" onclick="location.href={% url 'post_create' %}">글쓰기</button>
+          <p>뭐</p>
+          <p>이런 것도</p>
+          <p>할 수 있다고</p>
+          <p>볼 수 있지</p>
+          <h2 class="section-heading">거의 다 했다</h2>
+          <p>히힣</p>
+          <p>이거슨</p>
+          <blockquote class="blockquote">흐리게 흘겨쓴 것이여</blockquote>
+          <p>키키키키키키ㅣㅋ키키키킼</p>
+          <h2 class="section-heading">소융 화이팅</h2>
+          <p>종강하고 싶닭</p>
+          <a href="#">
+            <img class="img-fluid" src='{% static "img/post1.jpg" %}' alt="">
+          </a>
+          <span class="caption text-muted">요리 사진으로 대체할거임 ㄱㄷㄱㄷ</span>
+          <p>이제 그만...</p>
+          <p>살려조</p>
+          <p>자자
+            <a href="http://spaceipsum.com/">밑줄 쫙</a>. Photographs by 나야 나
+            <a href="https://www.flickr.com/photos/nasacommons/">강콤마</a>.</p>
+        </div>
+      </div>
+    </div>
+  </article>
+-->
+
+{% endblock %}

@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <!-- Page Header -->
+    <header class="masthead" style="background-image: url({% static 'img/post.jpg' %})">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-md-10 mx-auto">
+                    <div class="post-heading">
+                        <h1>{{ post.cat_id }}</h1>
+                        <h2 class="subheading">{{ post.board_id }}</h2>
+                        <span class="meta">Posted by
+              <a href="#">Comma</a>
+              {{ post.post_modifydate }}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+
+    <!-- Post Content -->
+    <article>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-md-10 mx-auto">
+
+                    <button type="button" class="btn btn-secondary" onclick="history.back()">목록</button>
+                    <button type="button" class="btn btn-primary" onclick="location.href={% url 'post_edit' pk=post.pk %}">수정</button>
+                    <button type="button" class="btn btn-danger" onclick="location.href={% url 'post_delete' pk=post.pk %} return confirm('정말 삭제하시겠습니까?')">삭제</button>
+
+                    <h2 class="section-heading">{{ post.post_name }}</h2>
+                    <p>{{ post.post_content|safe }}</p>
+                    <a href="#">
+                        <img class="img-fluid" src='{% static "img/post1.jpg" %}' alt="">
+                    </a>
+                    <span class="caption text-muted">요리사진</span>
+
+                    <a href="http://spaceipsum.com/">밑줄 쫙</a>. Photographs by 나야 나
+                    <a href="https://www.flickr.com/photos/nasacommons/">강콤마</a>.</p>
+                    <button type="button" class="btn btn-secondary" onclick="location.href={% url 'post' %}">목록</button>
+
+                </div>
+            </div>
+        </div>
+    </article>
+
+
+{% endblock %}
